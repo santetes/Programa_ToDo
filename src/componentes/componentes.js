@@ -6,6 +6,7 @@ import {todoList} from "../index"
 const divTodoList = document.querySelector('.todo-list');
 const txtTarea = document.querySelector('.new-todo')
 
+// Funciones
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
           <li class= ${todo.completado ? 'completed' : ''} data-id=${todo.id}>
@@ -26,14 +27,19 @@ export const crearTodoHtml = (todo) => {
   return div.firstElementChild;
 };
 
+const limpiarTxtTarea = () =>{
+	txtTarea.value = ""
+}
+
 //Eventos
 
 txtTarea.addEventListener('keyup', (event)=>{
 
 if(event.keyCode===13){
 	const tareaTodo = new Todo(txtTarea.value)
-todoList.nuevoTodo(tareaTodo)
-console.log(todoList);
+	todoList.nuevoTodo(tareaTodo)
+	crearTodoHtml(tareaTodo)
+	limpiarTxtTarea();
 	
 }
 
