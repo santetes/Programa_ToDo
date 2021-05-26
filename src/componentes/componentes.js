@@ -1,6 +1,10 @@
 //Referencias en HTML
 
+import { Todo } from "../clases";
+import {todoList} from "../index"
+
 const divTodoList = document.querySelector('.todo-list');
+const txtTarea = document.querySelector('.new-todo')
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -21,3 +25,16 @@ export const crearTodoHtml = (todo) => {
 
   return div.firstElementChild;
 };
+
+//Eventos
+
+txtTarea.addEventListener('keyup', (event)=>{
+
+if(event.keyCode===13){
+	const tareaTodo = new Todo(txtTarea.value)
+todoList.nuevoTodo(tareaTodo)
+console.log(todoList);
+	
+}
+
+})
