@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.config.js",
-    "start": "webpack serve --config webpack.config.js --open --port=8080",
-    "format": "npx prettier --write './src/clases'"
+    "start": "webpack serve --config webpack.config.js --open --port=8080"
+    
   },
   "author": "Santetes",
   "license": "ISC",
