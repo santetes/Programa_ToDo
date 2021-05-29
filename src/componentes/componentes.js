@@ -5,6 +5,7 @@ import { todoList } from '../index';
 
 const divTodoList = document.querySelector('.todo-list');
 const txtTarea = document.querySelector('.new-todo');
+const borrarCompletados = document.querySelector('.clear-completed');
 
 // Funciones
 export const crearTodoHtml = (todo) => {
@@ -13,7 +14,7 @@ export const crearTodoHtml = (todo) => {
     todo.id
   }">
 						<div class="view">
-							<input class="toggle" type="checkbox" ${todo.completado ? 'checked' : ''}>
+							<input class="toggle" type="checkbox"}>
 							<label>${todo.tarea}</label>
 							<button class="destroy"></button>
 						</div>
@@ -52,5 +53,18 @@ divTodoList.addEventListener('click', (event) => {
   if (nombreEtiquetaLi.includes('input')) {
     todoList.marcarCompletado(contenedorLiPadreId);
     contenedorLiPadre.classList.toggle('completed');
+  } else if (nombreEtiquetaLi.includes('button')) {
+    todoList.eliminarTodo(contenedorLiPadreId);
+    divTodoList.removeChild(contenedorLiPadre);
+  }
+});
+
+borrarCompletados.addEventListener('click', () => {
+  todoList.eliminarCompletados();
+  let numeroHijos = divTodoList.childNodes.length;
+  for (let i = numeroHijos - 1; i >= 0; i--) {
+    if (divTodoList.childNodes.item(i).classList.contains('completed')) {
+      divTodoList.childNodes.item(i).remove();
+    }
   }
 });
